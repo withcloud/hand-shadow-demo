@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hand shadow</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/web_icon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/3.12.0/tf.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+</head>
+
+<body>
+    <!-- 開始頁面 -->
+    <div id='main' style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
+       <div id='main_title' class="main_title web" >手影</div>
+        <img class='frame' id='non_intractive' src=assets/frame.svg ></img>
+         <div id='main_button' class="main_button">
+             <button onclick="language_game(1)">中文</button>
+             <button onclick="language_game(2)">english</button>
+             <button onclick="language_game(3)">portugues</button>
+         </div>
+    </div>
+
+    <!-- 中文簡介 -->
+    <div id='introduction_chinese' class="introduction"  >
+        <div style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
+            <div id='main_title' class="main_title web" >中文</div>
+            <div id='main_button' class="main_button" style="justify-content: center;">
+                <button class='introduction_start' onclick="language_start()">開始</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 英文簡介 -->
+    <div id='introduction_english' class="introduction">
+        <div  style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
+            <div id='main_title' class="main_title web">English</div>
+            <div id='main_button' class="main_button" style="justify-content: center;">
+                <button class='introduction_start' onclick="language_start()">開始</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 葡文簡介 -->
+    <div id='introduction_portuguese' class="introduction">
+        <div  style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
+            <div id='main_title' class="main_title web" >Portugues</div>
+            <div id='main_button' class="main_button" style="justify-content: center;">
+                <button class='introduction_start' onclick="language_start()">開始</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 輸入PIN嗎頁面 -->
+    <div id='pin_code' class="pin_code" style='display: none;'>
+        <div  style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
+            <div id='main_title' class="main_title web" >
+                <input class="pin_input" type="text" placeholder="pin" />
+            </div>
+            <div id='main_button' class="main_button" style="justify-content: center;">
+                <button class='pin_code_start' onclick="pin_code_start();sight();">直接開始</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 手影比對 -->
+    <div id='hand_shodow' class='hand_shodow' style='display: none;'>
+        <div  style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
+           
+            <div class="title">手影比對</div>
+
+            <canvas  width="300" height="300"></canvas>
+
+            <div id="example_photo" class="example_photo">
+                <div id="Reindeer">
+                    <img src="./assets/image/Reindeer.jpg" class="" alt="">
+                    <p>Reindeer（0）</p>
+                </div>
+                <div id="Dog">
+                    <img src="./assets/image/Dog.jpg" class="" alt="">
+                    <p>Dog（0）</p>
+                </div>
+                <div id="Eagle">
+                    <img src="./assets/image/Eagle.jpg" class="" alt="">
+                    <p>Eagle（0）</p>
+                </div>    
+            </div>
+
+            <div id='main_button' class="main_button" style="justify-content: center;">
+                <button class='hand_shodow_next' onclick="hand_shodow_next();">下一頁</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 攝影和下載 -->
+    <div id='qrcode' class='qrcode' style='display: none;'>
+        <div  style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
+            <div id='title' class="title">攝影和下載</div>
+            
+            <div id="qrcode_photo" class="qrcode_photo" style='text-align: center;margin-top: 30px;'>
+                <video id="video" autoplay="autoplay"></video>
+                <!-- <canvas id="canvas"></canvas> -->
+                <img id="imgTag" src="assets/image/avatar.jpg" alt="imgTag"/>
+            </div>
+
+            <p id="qrcode_p" class="qrcode_p" style="font-size: 30px;margin: 10px;">拍照（10）</p>
+        </div>
+    </div>
+
+    <!-- 二維碼頁面 -->
+    <div id='qr_code_page' style='display: none;' >
+        <div style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
+            <div id='main_title' class="main_title web" >Qr Code</div>
+            <div id='main_button' class="main_button" style="justify-content: center;">
+                <button class='qrcode_next' onclick="qrcode_next()">下一頁</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 結束頁面 -->
+    <div id='end_card' style='display: none;' >
+        <div style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
+            <p class="endP">完了!</p>
+            <div id='endButton' class="endButton web" onclick="again()">再來！（10）</div>
+        </div>
+    </div>
+    
+<script defer type="text/javascript">
+
+</script>
+    <script defer src="scripts/transition.js"></script>
+</body>
+
+</html>

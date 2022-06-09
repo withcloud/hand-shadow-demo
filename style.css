@@ -1,0 +1,324 @@
+@font-face {
+  font-family: "doodleFont";
+  src: url("assets/KgSecondChancesSketch-KpAp.ttf") format("truetype");
+}
+@font-face {
+  font-family: "niceFont";
+  src: url("assets/BenchNine-Regular.ttf") format("truetype");
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+}
+.rectangle {
+  border-radius: 9px;
+  width: 90px;
+  height: 90px;
+
+  position: absolute;
+
+  text-align: center;
+  vertical-align: middle;
+  line-height: 90px;
+  font-family: "doodleFont";
+  color: rgb(255, 255, 255);
+  font-size: 54px;
+  user-select: none;
+  cursor: pointer;
+
+  box-shadow: 8px 6px 0px #00000040;
+
+  transition: background-color 0.5s cubic-bezier(0.09, 0.385, 0, 0.975),
+    transform 0.5s cubic-bezier(0.09, 0.385, 0, 0.975);
+}
+.rectangle.info {
+  background: #4D4F80;
+  left: 20px;
+  top: 22px;
+}
+.rectangle.github {
+  background: #fff;
+  left: 20px;
+  top: 146px;
+}
+
+.rectangle:hover {
+  background-color: #000;
+}
+.rectangle:active {
+  transform: scale(1.1, 1.1);
+}
+
+.github_img {
+  transition: filter 0.4s cubic-bezier(0.09, 0.385, 0, 0.975);
+}
+.github_img:hover {
+  filter: invert(100%);
+}
+
+.mainButton {
+  border-radius: 101px;
+  box-shadow: 16px 18px 0px #00000040;
+
+  font-family: "doodleFont";
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  cursor: pointer;
+
+  transition: background-color 0.5s cubic-bezier(0.09, 0.385, 0, 0.975),
+    transform 0.5s cubic-bezier(0.09, 0.385, 0, 0.975);
+}
+.mainButton.web {
+  width: 892px;
+  height: 202px;
+  background: #00c0a3;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+  line-height: 202px;
+  color: rgb(255, 255, 255);
+  font-size: 69px;
+}
+.mainButton.start {
+  width: 542px;
+  height: 94px;
+  background: #ff8066;
+
+  line-height: 94px;
+  color: rgb(255, 255, 255);
+  font-size: 40px;
+}
+
+.mainButton:hover {
+  background-color: #000;
+}
+.mainButton.web:active {
+  transform: translate(-50%, -50%) scale(1.1, 1.1);
+}
+.mainButton.start:active{
+  transform: scale(1.1, 1.1);
+}
+
+.introduction{
+  display: none;
+}
+
+.main_title {
+  border-radius: 101px;
+
+  font-family: "doodleFont";
+  text-align: center;
+  vertical-align: middle;
+
+  transition: background-color 0.5s cubic-bezier(0.09, 0.385, 0, 0.975),
+    transform 0.5s cubic-bezier(0.09, 0.385, 0, 0.975);
+}
+.main_title.web {
+  width: 892px;
+  height: 202px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+  line-height: 202px;
+  color: rgb(255, 255, 255);
+  font-size: 69px;
+}
+
+#main_button{
+  width: 892px;
+  height: 202px;
+
+  position: absolute;
+  top:90%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  line-height: 202px;
+  font-size: 69px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.main_button>button{
+  background: #00c0a3;
+  color: rgb(255, 255, 255);
+  padding:1rem ;
+  font-size: 20px;
+  border-radius: 101px;
+  border:none;
+  width:200px;
+  cursor: pointer;
+}
+
+
+.pin_input{
+  width:600px;
+  height:50px;
+  line-height: 50px;
+  font-size: 40px;
+  padding-left: 10px;
+  outline: none;
+}
+
+.title{
+  font-size: 69px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+.example_photo{
+  display: grid;
+  /* 容納單元格 */
+  grid-template-columns: repeat(3, 1fr);
+  /* 行與行之間，列與列之間 */
+  grid-gap: 20px 20px;
+  /* 內容整體平均分佈 */
+  justify-content: space-around;
+  text-align: center;
+  margin: 10px 0;
+  color: rgb(255, 255, 255);
+  margin-top:80px;
+}
+
+.endP{
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  color: rgb(255, 255, 255);
+  font-size: 69px;
+}
+
+.endButton {
+  border-radius: 101px;
+  box-shadow: 16px 18px 0px #00000040;
+
+  font-family: "doodleFont";
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  cursor: pointer;
+
+  transition: background-color 0.5s cubic-bezier(0.09, 0.385, 0, 0.975),
+    transform 0.5s cubic-bezier(0.09, 0.385, 0, 0.975);
+}
+
+.endButton.web {
+  width:400px;
+  height: 120px;
+  background: #00c0a3;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+  line-height: 120px;
+  color: rgb(255, 255, 255);
+  font-size: 50px;
+}
+
+#text {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -100%);
+
+  text-align: center;
+
+  font-family: "doodleFont";
+  color: rgb(255, 255, 255);
+  font-size: 25px;
+}
+
+.frame {
+  fill: #ffff;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 1700px) {
+  img.frame {
+    display: none;
+  }
+}
+@media screen and (max-height: 700px) {
+  img.frame {
+    display: none;
+  }
+}
+
+.link:link {
+  color: rgb(54, 180, 92);
+  background-color: transparent;
+  text-decoration: none;
+}
+.link:visited {
+  color: rgb(66, 201, 48);
+  background-color: transparent;
+  text-decoration: none;
+}
+.link:hover {
+  color: rgb(10, 189, 189);
+  background-color: transparent;
+  text-decoration: underline;
+}
+.link:active {
+  color: rgb(187, 63, 63);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+#hand_shodow canvas {
+  position: relative;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+}
+
+.active{
+  box-shadow: 0px 0px 8px red;
+}
+
+#qrcode_avatar{
+ display: flex;
+ justify-content: center;
+ margin-top: 20px;
+}
+
+.qrcode_photo canvas,
+.qrcode_photo video,
+.qrcode_photo img{
+  width: 300px;
+  height: 300px;
+  background-color: #fff;
+  margin: 0 5px;
+}
+  
+.qrcode_p{
+  color:  #fff;
+  font-size: 30px;
+  margin: 10px;
+  text-align: center;
+}
