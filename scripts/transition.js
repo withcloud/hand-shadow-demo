@@ -132,7 +132,7 @@ async function predict() {
             }
 
             // 概率大於0.85的手影圖片，突出邊框
-            if (prediction[i].probability.toFixed(2) > 0.8) {
+            if (prediction[i].probability.toFixed(2) > 0.7) {
                 hand_shadow_name = prediction[i].className//記錄猜測的手影名稱
                 $("#hand_shodow img")[i].setAttribute("class", "active")
             } else {
