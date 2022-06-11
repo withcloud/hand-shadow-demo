@@ -183,15 +183,19 @@ body {
 .example_photo{
   display: grid;
   /* 容納單元格 */
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   /* 行與行之間，列與列之間 */
-  grid-gap: 20px 20px;
+  /* grid-gap: 20px 20px; */
   /* 內容整體平均分佈 */
   justify-content: space-around;
   text-align: center;
-  margin: 10px 0;
   color: rgb(255, 255, 255);
   margin-top:80px;
+
+}
+.example_photo img{
+  width: 150px;
+  height: 150px;
 }
 
 .endP{
@@ -295,16 +299,12 @@ body {
   top: 20%;
   transform: translate(-50%, -50%);
   background-color: #fff;
+  width: 300px;
+  height: 300px;
 }
 
 .active{
   box-shadow: 0px 0px 8px red;
-}
-
-#qrcode_avatar{
- display: flex;
- justify-content: center;
- margin-top: 20px;
 }
 
 .qrcode_photo canvas,

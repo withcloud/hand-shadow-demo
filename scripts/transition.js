@@ -108,11 +108,26 @@ async function predict() {
             const classPrediction = prediction[i].className + "（" + prediction[i].probability.toFixed(2) + "）";
 
             // 顯示 Reindeer Dog Eagle 實時猜測值
-            if (classPrediction.includes("Reindeer")) {
+            // if (classPrediction.includes("Reindeer")) {
+            //     $("#hand_shodow p")[i].innerHTML = classPrediction
+            // } else if (classPrediction.includes("Dog")) {
+            //     $("#hand_shodow p")[i].innerHTML = classPrediction
+            // } else if (classPrediction.includes("Eagle")) {
+            //     $("#hand_shodow p")[i].innerHTML = classPrediction
+            // }
+
+            // BigCrad Goat Kitten Owl RedBird Trukey
+            if (classPrediction.includes("BigCrad")) {
                 $("#hand_shodow p")[i].innerHTML = classPrediction
-            } else if (classPrediction.includes("Dog")) {
+            } else if (classPrediction.includes("Goat")) {
                 $("#hand_shodow p")[i].innerHTML = classPrediction
-            } else if (classPrediction.includes("Eagle")) {
+            } else if (classPrediction.includes("Kitten")) {
+                $("#hand_shodow p")[i].innerHTML = classPrediction
+            } else if (classPrediction.includes("Owl")) {
+                $("#hand_shodow p")[i].innerHTML = classPrediction
+            } else if (classPrediction.includes("RedBird")) {
+                $("#hand_shodow p")[i].innerHTML = classPrediction
+            } else if (classPrediction.includes("Trukey")) {
                 $("#hand_shodow p")[i].innerHTML = classPrediction
             }
 
@@ -273,12 +288,28 @@ function imgSrc(video, cwith = 100, cheight = 100) {
         const context = canvas.getContext('2d')
 
         let bgImg = new Image()
-        if (hand_shadow_name === 'Reindeer') {
+        // Reindeer Dog Eagle
+        // if (hand_shadow_name === 'Reindeer') {
+        //     bgImg.src = './assets/image/transparent/pikachu1.png'
+        // } else if (hand_shadow_name === 'Dog') {
+        //     bgImg.src = './assets/image/transparent/dragon1.png'
+        // } else if (hand_shadow_name === 'Eagle') {
+        //     bgImg.src = './assets/image/transparent/tiger1.png'
+        // }
+
+        // BigCrad Goat Kitten Owl RedBird Trukey
+        if (hand_shadow_name === 'BigCrad') {
             bgImg.src = './assets/image/transparent/pikachu1.png'
-        } else if (hand_shadow_name === 'Dog') {
+        } else if (hand_shadow_name === 'Goat') {
             bgImg.src = './assets/image/transparent/dragon1.png'
-        } else if (hand_shadow_name === 'Eagle') {
-            bgImg.src = './assets/image/transparent/tiger1.png'
+        } else if (hand_shadow_name === 'Kitten') {
+            bgImg.src = './assets/image/transparent/donaldDuck1.png'
+        } else if (hand_shadow_name === 'Owl') {
+            bgImg.src = './assets/image/transparent/garfield1.png'
+        } else if (hand_shadow_name === 'RedBird') {
+            bgImg.src = './assets/image/transparent/pluto1.png'
+        } else if (hand_shadow_name === 'Trukey') {
+            bgImg.src = './assets/image/transparent/winnie1.png'
         }
 
         // 跨域
