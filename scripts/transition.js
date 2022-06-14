@@ -64,6 +64,17 @@ function language_start() {
 function pin_code_start() {
     hand_shodow = document.getElementById('hand_shodow')
     hand_shodow.style.display = 'block'
+
+    // 結束頁面倒計時
+    window.handShodowNextNum = 10
+    $('.hand_shodow_next').text(`下一頁（${window.handShodowNextNum}）`)
+    window.handShodowNextTimer = setInterval(() => {
+        window.handShodowNextNum -= 1
+        $('.hand_shodow_next').text(`下一頁（${window.handShodowNextNum}）`)
+        if (window.handShodowNextNum <= 0) {
+            hand_shodow_next()//進入拍照頁面
+        }
+    }, 1000)
 }
 
 let model, webcam, labelContainer, maxPredictions;
@@ -143,6 +154,7 @@ async function predict() {
 }
 
 async function hand_shodow_next() {
+    clearInterval(window.handShodowNextTimer) // 清空定時器
     // 顯示拍照頁面
     qrcode = document.getElementById('qrcode')
     qrcode.style.display = 'block'
@@ -242,11 +254,12 @@ function takePhoto() {
     let video = document.getElementById('video');
 
     // 这里的img就是得到的图片
-    imgSrc(video, 100, 100).then(src => {
+    imgSrc(video).then(src => {
         document.getElementById('imgTag').src = src;
     })
 
-    window.nextPageNum = 2
+    // 拍照倒計時會進入結束頁面
+    window.nextPageNum = 5
     window.nextPageNumNumTimer = setInterval(() => {
         window.nextPageNum -= 1
         if (window.nextPageNum <= 0) {
@@ -279,6 +292,7 @@ function imgSrc(video, cwith = 100, cheight = 100) {
         canvas.id = 'canvas';
         canvas.width = 300;
         canvas.height = 300;
+        canvas.style.objectFit = 'cover';
 
         // let canvas = document.getElementById('canvas');//獲得一個節點
         // 高分辨率屏幕上清晰显示canvas图形（獲取canvas時使用）
@@ -316,7 +330,7 @@ function imgSrc(video, cwith = 100, cheight = 100) {
         bgImg.crossOrigin = 'Anonymous'
 
         bgImg.onload = () => {
-            context.drawImage(video, 0, 0, 300, 300);//頭像放入canvas
+            context.drawImage(video, 0, 0, 300, 300); // 頭像放入canvas
             context.drawImage(bgImg, 0, 0, cwith, cheight)
             const src = canvas.toDataURL('image/png')
             resolve(src)

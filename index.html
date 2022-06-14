@@ -117,7 +117,7 @@
             </div>
 
             <div id='main_button' class="main_button" style="justify-content: center;">
-                <button class='hand_shodow_next' onclick="hand_shodow_next();">下一頁</button>
+                <button id='hand_shodow_next' class='hand_shodow_next' onclick="hand_shodow_next();">下一頁（10）</button>
             </div>
         </div>
     </div>
@@ -128,12 +128,16 @@
             <div id='title' class="title">攝影和下載</div>
             
             <div id="qrcode_photo" class="qrcode_photo" style='text-align: center;margin-top: 30px;'>
-                <video id="video" autoplay="autoplay"></video>
+                <video id="video" autoplay="autoplay" muted></video>
                 <!-- <canvas id="canvas"></canvas> -->
                 <img id="imgTag" src="assets/image/avatar.jpg" alt="imgTag"/>
             </div>
 
             <p id="qrcode_p" class="qrcode_p" style="font-size: 30px;margin: 10px;">拍照（10）</p>
+<!-- 
+            <div id='main_button' class="main_button" style="justify-content: center;">
+                <button class='qrcode_next' onclick="takePhoto()">拍照</button>
+            </div> -->
         </div>
     </div>
 
