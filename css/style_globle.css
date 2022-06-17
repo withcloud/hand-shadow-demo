@@ -1,11 +1,3 @@
-@font-face {
-  font-family: "doodleFont";
-  src: url("assets/KgSecondChancesSketch-KpAp.ttf") format("truetype");
-}
-@font-face {
-  font-family: "niceFont";
-  src: url("assets/BenchNine-Regular.ttf") format("truetype");
-}
 html,
 body {
   margin: 0;
@@ -137,14 +129,12 @@ body {
 
 #main_button{
   width: 892px;
-  height: 202px;
 
   position: absolute;
   top:90%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  line-height: 202px;
   font-size: 69px;
 
   display: flex;
@@ -156,12 +146,13 @@ body {
 .main_button>button{
   background: #00c0a3;
   color: rgb(255, 255, 255);
-  padding:1rem ;
   font-size: 20px;
   border-radius: 101px;
   border:none;
   width:200px;
   cursor: pointer;
+  height: 50px;
+  line-height: 50px;
 }
 
 
@@ -188,14 +179,18 @@ body {
   /* grid-gap: 20px 20px; */
   /* 內容整體平均分佈 */
   justify-content: space-around;
-  text-align: center;
   color: rgb(255, 255, 255);
   margin-top:80px;
-
 }
 .example_photo img{
   width: 150px;
   height: 150px;
+}
+
+.example_photo>div{
+  text-align: center;
+  justify-self: center;
+  align-self: center;
 }
 
 .endP{
@@ -307,17 +302,22 @@ body {
   box-shadow: 0px 0px 8px red;
 }
 
+.qrcode_photo{
+  text-align: center;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
 
-.qrcode_photo canvas,
 .qrcode_photo video,
 .qrcode_photo img{
   width: 300px;
   height:300px;
-  /* background-color: #fff; */
+  background-color: #fff;
   margin: 0 5px;
   padding: 0px;
   /* 被替换的内容正好填充元素的内容框 */
-  object-fit: cover
+  object-fit: cover;
 }
   
 .qrcode_p{
