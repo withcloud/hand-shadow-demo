@@ -194,13 +194,9 @@ body {
 }
 
 .endP{
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
   color: rgb(255, 255, 255);
   font-size: 69px;
+  text-align: center;
 }
 
 .endButton {
@@ -222,7 +218,7 @@ body {
   height: 120px;
   background: #00c0a3;
   position: absolute;
-  top: 60%;
+  top: 85%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
@@ -325,4 +321,11 @@ body {
   font-size: 30px;
   margin: 10px;
   text-align: center;
+}
+
+#eChartsMain>canvas{
+   position: relative;
+   left: 200px;
+   top: 120px;
+   width: 400px;
 }

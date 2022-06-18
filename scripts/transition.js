@@ -2,28 +2,41 @@
 const HOST = "http://127.0.0.1:3000"; //指定服務端口
 let pinInput = ""; // pin碼值
 let local_user = {};// pin對象
+const scoresData = [];
+
+const items = [
+    "數據科學",
+    "謎",
+    "機器都識學習",
+    "你畫我猜",
+    "5G的速度",
+    "姿勢捕捉",
+    "聲音中的喜怒哀樂",
+];
 
 
 // 重新開始遊戲
 function again() {
-    $("#main").css('display', 'block');
-    $("#end_card").css('display', 'none');
-    clearInterval(window.endCarTimer) //清除結束頁面倒計時
-    $("#pin_code").css('display', 'none');
-    $("#introduction_chinese").css('display', 'none');
-    $("#introduction_english").css('display', 'none');
-    $("#introduction_portuguese").css('display', 'none');
-    clearInterval(window.languageCarTimer) //清除語言頁面倒計時
-    $("#hand_shodow").css('display', 'none');
-    $("#qrcode").css('display', 'none');
-    $("#qr_code_page").css('display', 'none');
+    window.location.reload();//重新加載會有閃爍現象
 
-    // 清空手影名稱
-    hand_shadow_name = ''
+    // $("#main").css('display', 'block');
+    // $("#end_card").css('display', 'none');
+    // clearInterval(window.endCarTimer) //清除結束頁面倒計時
+    // $("#pin_code").css('display', 'none');
+    // $("#introduction_chinese").css('display', 'none');
+    // $("#introduction_english").css('display', 'none');
+    // $("#introduction_portuguese").css('display', 'none');
+    // clearInterval(window.languageCarTimer) //清除語言頁面倒計時
+    // $("#hand_shodow").css('display', 'none');
+    // $("#qrcode").css('display', 'none');
+    // $("#qr_code_page").css('display', 'none');
 
-    // 清空pin值
-    pinInput = ''
-    local_user = {}
+    // // 清空手影名稱
+    // hand_shadow_name = ''
+
+    // // 清空pin值
+    // pinInput = ''
+    // local_user = {}
 }
 
 // 選擇語言
@@ -72,7 +85,7 @@ function pin_code_start() {
     hand_shodow = document.getElementById('hand_shodow')
     hand_shodow.style.display = 'block'
 
-    // 結束頁面倒計時
+    // 進入手影比對頁面
     window.handShodowNextNum = 10
     $('.hand_shodow_next').text(`下一頁（${window.handShodowNextNum}）`)
     window.handShodowNextTimer = setInterval(() => {
@@ -198,6 +211,11 @@ function intercept() {
 function qrcode_next() {
     end_card = document.getElementById('end_card')
     end_card.style.display = 'block'
+
+    createScore() // 建立分數
+    getAllScores() // 顯示成績
+    $("#showPinLabel").text(pinInput); // 顯示pin碼
+
     clear()
     // 結束頁面倒計時
     window.endCarNum = 10
@@ -405,13 +423,14 @@ for (let index = 1; index <= 12; index++) { // 給小鍵盤所有按鈕賦值
 const userStart = async () => {//pin開始事件
     // 獲取用戶
     try {
+        console.log('pinInput', pinInput)
         const data = await fetch(`${HOST}/api/user/get?pin=${pinInput}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             },
         }).then((res) => res.json());
-        console.log(data)
+        console.log('data', data)
         if (!data || !data?.id) {
             console.log('data error ')
             $.toast({
@@ -465,5 +484,102 @@ const newStart = async () => {// pin新身份開始  建立用戶
             showHideTransition: "fade",
             icon: "error",
         });
+    }
+};
+
+const getAllScores = async () => {
+    try {
+        const data = await fetch(
+            `${HOST}/api/user/all_scores?pin=${pinInput}`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        ).then((res) => res.json());
+        console.log('成績數據', data)
+        if (data.error) {
+            throw new Error(data.error);
+        } else {
+            data.forEach((item) => {
+                scoresData.push({
+                    id: item.id,
+                    itemName: item.itemName,
+                    score: item.score,
+                });
+            });
+
+            // 基于准备好的dom，初始化echarts实例
+            $("#eChartsMain").ready(() => {
+                const myChart = echarts.init(
+                    document.getElementById("eChartsMain")
+                );
+
+                // 指定图表的配置项和数据
+                const option = {
+                    title: {
+                        text: "遊戲得分圖",
+                    },
+                    radar: {
+                        indicator: items.map((item) => {
+                            return {
+                                name: item,
+                                max: 100,
+                            };
+                        }),
+                    },
+                    series: [
+                        {
+                            // name: "得分",
+                            type: "radar",
+                            data: [
+                                {
+                                    value: items.map((item) => {
+                                        const scores = scoresData.filter((s) => {
+                                            return s.itemName === item;
+                                        });
+                                        const score = _.maxBy(scores, "score");
+
+                                        return score?.score || 0;
+                                    }),
+                                    name: "各項遊戲得分得分",
+                                },
+                            ],
+                        },
+                    ],
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            });
+        }
+    } catch (error) {
+        console.error("發生錯誤:", error);
+        // 顯示在 toast
+        // toast.error(error.message);
+    }
+};
+
+// 建立用戶分數
+const createScore = async () => {
+
+    try {
+        const body = {
+            score: 100,//默認成績，可進行適度的調整
+            pin: pinInput,
+            itemName: "機器都識學習",
+        };
+
+        const result = await fetch(`${HOST}/api/score/create`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+        }).then((res) => res.json());
+        console.log('創建的成績結果', result)
+    } catch (error) {
+        console.error("發生錯誤:", error);
     }
 };

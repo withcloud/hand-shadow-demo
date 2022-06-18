@@ -17,6 +17,8 @@
 
     <script type="text/javascript" src="scripts/jquery-3.6.0.min.js"></script>
     <script type="text/javascript"  src="scripts/jquery.toast.min.js"></script>
+    <script type="text/javascript"  src="scripts/echarts.js"></script>
+    <script type="text/javascript"  src="scripts/lodash.min.js"></script>
 </head>
 
 <body>
@@ -269,7 +271,35 @@
     <!-- 結束頁面 -->
     <div id='end_card' style='display: none;' >
         <div style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
-            <p class="endP">完了!</p>
+          <p class="endP">遊戲結束！</p>
+          <!-- <p class="endP text-5xl my-4"  >繪畫總分數：<span id='totalScore'>0</span></p> -->
+            <!-- 遊戲得分圖 -->
+            <div class="mt-1 sm:mx-auto sm:w-full sm:max-w-md">
+              <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <div id="eChartsMain" style="width: 400px; height: 250px"></div>
+              </div>
+            </div>
+            <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-md">
+              <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <div class="flex justify-center">
+                  <label class="block text-gray-700 font-medium mb-1 text-lg">
+                    你的用戶PIN碼
+                  </label>
+                </div>
+                <div class="flex justify-center">
+                  <label
+                    id="showPinLabel"
+                    class="py-2 px-3 text-gray-700 shadow text-center text-5xl"
+                  >
+                  </label>
+                </div>
+                <div class="flex justify-center">
+                  <label class="block text-gray-700 font-medium mt-1 text-sm">
+                    請記住這組PIN碼以在其它遊戲使用
+                  </label>
+                </div>
+              </div>
+            </div>
             <div id='endButton' class="endButton web" onclick="again()">再來！（10）</div>
         </div>
     </div>
