@@ -212,8 +212,8 @@ function qrcode_next() {
     end_card = document.getElementById('end_card')
     end_card.style.display = 'block'
 
-    createScore() // 建立分數
-    getAllScores() // 顯示成績
+
+    createScore(); // 建立分數
     $("#showPinLabel").text(pinInput); // 顯示pin碼
 
     clear()
@@ -284,7 +284,7 @@ function takePhoto() {
     })
 
     // 拍照倒計時會進入結束頁面
-    window.nextPageNum = 5
+    window.nextPageNum = 2
     window.nextPageNumNumTimer = setInterval(() => {
         window.nextPageNum -= 1
         if (window.nextPageNum <= 0) {
@@ -389,10 +389,12 @@ $("#pinInput").focus(() => { //pin嗎輸入事件
 
 $("#pinStartBtn").click(() => {//pin開始
     userStart();
+    sight();
 });
 
 $("#startDirectlyBtn").click(() => {//pin新身份開始
     newStart();
+    sight();
 });
 
 for (let index = 1; index <= 12; index++) { // 給小鍵盤所有按鈕賦值
@@ -472,6 +474,7 @@ const newStart = async () => {// pin新身份開始  建立用戶
                 pinInput = local_user.pin;
                 console.log('user pin', pinInput)
             }
+
             pin_code_start()  // 進入遊戲
         }
 
@@ -487,6 +490,32 @@ const newStart = async () => {// pin新身份開始  建立用戶
     }
 };
 
+
+// 建立用戶分數
+const createScore = async () => {
+
+    try {
+        const body = {
+            score: 100,//默認成績，可進行適度的調整
+            pin: pinInput,
+            itemName: "機器都識學習",
+        };
+
+        const result = await fetch(`${HOST}/api/score/create`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+        }).then((res) => res.json());
+        console.log('創建的成績結果', result)
+
+        getAllScores();//獲得所有分數
+    } catch (error) {
+        console.error("發生錯誤:", error);
+    }
+};
+
 const getAllScores = async () => {
     try {
         const data = await fetch(
@@ -498,7 +527,8 @@ const getAllScores = async () => {
                 },
             }
         ).then((res) => res.json());
-        console.log('成績數據', data)
+        console.log('pinInput', pinInput)
+        console.log('所有分數', data)
         if (data.error) {
             throw new Error(data.error);
         } else {
@@ -561,25 +591,3 @@ const getAllScores = async () => {
     }
 };
 
-// 建立用戶分數
-const createScore = async () => {
-
-    try {
-        const body = {
-            score: 100,//默認成績，可進行適度的調整
-            pin: pinInput,
-            itemName: "機器都識學習",
-        };
-
-        const result = await fetch(`${HOST}/api/score/create`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body),
-        }).then((res) => res.json());
-        console.log('創建的成績結果', result)
-    } catch (error) {
-        console.error("發生錯誤:", error);
-    }
-};
