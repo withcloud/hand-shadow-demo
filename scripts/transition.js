@@ -1,5 +1,5 @@
 // 網絡地址
-const HOST = "http://127.0.0.1:3000"; //指定服務端口
+const HOST = "https://pincode-beta.vercel.app"; //指定服務端口
 let pinInput = ""; // pin碼值
 let local_user = {};// pin對象
 const scoresData = [];
@@ -30,13 +30,6 @@ function again() {
     // $("#hand_shodow").css('display', 'none');
     // $("#qrcode").css('display', 'none');
     // $("#qr_code_page").css('display', 'none');
-
-    // // 清空手影名稱
-    // hand_shadow_name = ''
-
-    // // 清空pin值
-    // pinInput = ''
-    // local_user = {}
 }
 
 // 選擇語言
@@ -86,7 +79,7 @@ function pin_code_start() {
     hand_shodow.style.display = 'block'
 
     // 進入手影比對頁面
-    window.handShodowNextNum = 10
+    window.handShodowNextNum = 60
     $('.hand_shodow_next').text(`下一頁（${window.handShodowNextNum}）`)
     window.handShodowNextTimer = setInterval(() => {
         window.handShodowNextNum -= 1
@@ -176,12 +169,13 @@ async function predict() {
 async function hand_shodow_next() {
     clearInterval(window.handShodowNextTimer) // 清空定時器
     // 顯示拍照頁面
-    qrcode = document.getElementById('qrcode')
-    qrcode.style.display = 'block'
+    // qrcode = document.getElementById('qrcode')
+    // qrcode.style.display = 'block'
     // 清空內容
-    clear()
+    // clear()
     // 開啟拍照攝像頭
-    openMedia()
+    // openMedia()
+    qrcode_next()
 }
 
 let isStart = false
@@ -249,7 +243,7 @@ let mediaStreamTrack = null; // 视频对象(全局)
 function openMedia() {
     let constraints = {
         video: { width: 300, height: 300 },
-        audio: true
+        audio: false
     };
     //获得video摄像头
     let video = document.getElementById('video');

@@ -122,9 +122,8 @@ body {
   margin-right: -50%;
   transform: translate(-50%, -50%);
 
-  line-height: 202px;
   color: rgb(255, 255, 255);
-  font-size: 69px;
+  font-size: 40px;
 }
 
 #main_button{
@@ -139,7 +138,7 @@ body {
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 
