@@ -23,19 +23,22 @@
 <body>
     <!-- 開始頁面 -->
     <div id='main' style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
-       <div id='main_title' class="main_title web" >手影</div>
+      <div style="position: absolute; right:20px ; top: 20px; font-size: 30px;  color: white; border: 1px solid white; padding: 5px 10px ; border-radius: 10px;">*建議使用 google chrome 瀏覽器.</div> 
+      <div id='main_title' class="main_title web" >手影</div>
         <img class='frame' id='non_intractive' src=assets/frame.svg alt="" ></img>
          <div id='main_button' class="main_button">
              <button onclick="language_game(1)">中文</button>
-             <button onclick="language_game(2)">english</button>
-             <button onclick="language_game(3)">portugues</button>
+             <!-- <button onclick="language_game(2)">English</button>
+             <button onclick="language_game(3)">Portugues</button> -->
          </div>
     </div>
 
     <!-- 中文簡介 -->
     <div id='introduction_chinese' class="introduction"  >
         <div style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
-            <div id='main_title' class="main_title web" >中文</div>
+          <div id='main_title' class="main_title web" >在這頁會介紹相關原理跟說明
+            讓用戶對數據科學技術有一定了解。
+            </div>
             <div id='main_button' class="main_button" style="justify-content: center;">
                 <button class='introduction_start' onclick="language_start()">開始</button>
             </div>
@@ -167,7 +170,7 @@
                     class="block text-gray-700 font-medium mb-2 text-lg"
                     htmlFor="username"
                   >
-                    或是以新的用戶身份
+                  或是以新的用戶身份（請使用新用戶開始遊戲）
                   </label>
                 </div>
                 <div class="flex items-center justify-center">
@@ -194,19 +197,6 @@
             <canvas></canvas>
 
             <div id="example_photo" class="example_photo" style="padding-top: 60px;">
-                <!-- <div id="Reindeer">
-                    <img src="./assets/image/Reindeer.jpg" class="" alt="">
-                    <p>Reindeer（0）</p>
-                </div>
-                <div id="Dog">
-                    <img src="./assets/image/Dog.jpg" class="" alt="">
-                    <p>Dog（0）</p>
-                </div>
-                <div id="Eagle">
-                    <img src="./assets/image/Eagle.jpg" class="" alt="">
-                    <p>Eagle（0）</p>
-                </div>     -->
-
                 <div id="BigCrad">
                     <img src="./assets/image/handShow/BigCrad.png" class="" alt="">
                     <p>BigCrad（0）</p>
@@ -234,7 +224,7 @@
             </div>
 
             <div id='main_button' class="main_button" style="justify-content: center;">
-                <button id='hand_shodow_next' class='hand_shodow_next' onclick="hand_shodow_next();">下一頁（10）</button>
+                <button id='hand_shodow_next' class='hand_shodow_next' onclick="hand_shodow_next();">下一頁（60）</button>
             </div>
         </div>
     </div>
