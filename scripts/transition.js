@@ -78,16 +78,8 @@ function pin_code_start() {
     hand_shodow = document.getElementById('hand_shodow')
     hand_shodow.style.display = 'block'
 
-    // 進入手影比對頁面
-    window.handShodowNextNum = 60
-    $('.hand_shodow_next').text(`下一頁（${window.handShodowNextNum}）`)
-    window.handShodowNextTimer = setInterval(() => {
-        window.handShodowNextNum -= 1
-        $('.hand_shodow_next').text(`下一頁（${window.handShodowNextNum}）`)
-        if (window.handShodowNextNum <= 0) {
-            hand_shodow_next()//進入拍照頁面
-        }
-    }, 1000)
+    sight();//開啟攝像頭進行手影比對
+
 }
 
 let model, webcam, labelContainer, maxPredictions;
@@ -96,22 +88,41 @@ let hand_shadow_name = '' //猜測的手影名稱
 
 // 加載圖像模型並設置網絡攝像頭
 async function sight() {
+    console.log(111)
 
     const modelURL = "./model/model.json";
     const metadataURL = "./model/metadata.json";
 
     model = await tmImage.load(modelURL, metadataURL); // 加載模型
+
     maxPredictions = model.getTotalClasses(); // 所有模型類
 
     webcam = new tmImage.Webcam(300, 300, false); // canvas width , canvas height, canvas 是否翻轉網絡攝像頭
-    await webcam.setup(); // 請求訪問網絡攝像頭
-    webcam.play();  // 開啟網絡攝像頭
 
-    // 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行。
-    state = true
-    window.requestAnimationFrame(loop);
+    try {
+        await webcam.setup(); // 請求訪問網絡攝像頭
 
-    $("#hand_shodow canvas").replaceWith(webcam.canvas)//手影視線窗口
+        webcam.play();  // 開啟網絡攝像頭
+        // 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行。
+        state = true
+        window.requestAnimationFrame(loop);
+
+        $("#hand_shodow canvas").replaceWith(webcam.canvas)//手影視線窗口
+
+        // 進入手影比對頁面
+        window.handShodowNextNum = 60
+        $('.hand_shodow_next').text(`下一頁（${window.handShodowNextNum}）`)
+        window.handShodowNextTimer = setInterval(() => {
+            window.handShodowNextNum -= 1
+            $('.hand_shodow_next').text(`下一頁（${window.handShodowNextNum}）`)
+            if (window.handShodowNextNum <= 0) {
+                hand_shodow_next()//進入拍照頁面
+            }
+        }, 1000)
+
+    } catch (error) {
+        alert("未開啟攝像頭，請重新開始，並允許請求攝像頭權限！")
+    }
 }
 
 async function loop() {
@@ -223,7 +234,7 @@ function qrcode_next() {
     }, 1000)
 
     // 關掉拍照
-    closeMedia()
+    // closeMedia()
 
 }
 
@@ -383,12 +394,10 @@ $("#pinInput").focus(() => { //pin嗎輸入事件
 
 $("#pinStartBtn").click(() => {//pin開始
     userStart();
-    sight();
 });
 
 $("#startDirectlyBtn").click(() => {//pin新身份開始
     newStart();
-    sight();
 });
 
 for (let index = 1; index <= 12; index++) { // 給小鍵盤所有按鈕賦值
@@ -583,5 +592,50 @@ const getAllScores = async () => {
         // 顯示在 toast
         // toast.error(error.message);
     }
+};
+
+
+window.alert = function (msg, callback) {
+    var div = document.createElement("div");
+    div.innerHTML = "<style type=\"text/css\">"
+        + ".nbaMask { position: fixed; z-index: 1000; top: 0; right: 0; left: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); }                                                                                                                                                                       "
+        + ".nbaMaskTransparent { position: fixed; z-index: 1000; top: 0; right: 0; left: 0; bottom: 0; }                                                                                                                                                                                            "
+        + ".nbaDialog { position: fixed; z-index: 5000; width: 80%; max-width: 500px; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); background-color: #fff; text-align: center; border-radius: 8px; overflow: hidden; opacity: 1; color: white; }"
+        + ".nbaDialog .nbaDialogHd { padding: .2rem .27rem .08rem .27rem; }                                                                                                                                                                                                                         "
+        + ".nbaDialog .nbaDialogHd .nbaDialogTitle { font-size: 28px; font-weight: 400; }                                                                                                                                                                                                           "
+        + ".nbaDialog .nbaDialogBd { padding: .8rem .8rem .8rem .8rem; font-size: 25px; line-height: 1.3; word-wrap: break-word; word-break: break-all; color: #000000; }                                                                                                                                          "
+        + ".nbaDialog .nbaDialogFt { position: relative; line-height: 48px; font-size: 17px; display: -webkit-box; display: -webkit-flex; display: flex; }                                                                                                                                          "
+        + ".nbaDialog .nbaDialogFt:after { content: \" \"; position: absolute; left: 0; top: 0; right: 0; height: 1px; border-top: 1px solid #e6e6e6; color: #e6e6e6; -webkit-transform-origin: 0 0; transform-origin: 0 0; -webkit-transform: scaleY(0.5); transform: scaleY(0.5); }               "
+        + ".nbaDialog .nbaDialogBtn { display: block; -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; color: #1E90FF; text-decoration: none; -webkit-tap-highlight-color: transparent; position: relative; margin-bottom: 0;  font-size: 20px; background-color:#00c0a3;color:white }                                                                       "
+        + ".nbaDialog .nbaDialogBtn:after { content: \" \"; position: absolute; left: 0; top: 0; width: 1px; bottom: 0; border-left: 1px solid #e6e6e6; color: #e6e6e6; -webkit-transform-origin: 0 0; transform-origin: 0 0; -webkit-transform: scaleX(0.5); transform: scaleX(0.5); }             "
+        + ".nbaDialog a { text-decoration: none; -webkit-tap-highlight-color: transparent; }"
+        + "</style>"
+        + "<div id=\"dialogs2\" style=\"display: none\">"
+        + "<div class=\"nbaMask\"></div>"
+        + "<div class=\"nbaDialog\">"
+        + "    <div class=\"nbaDialogHd\">"
+        + "        <strong class=\"nbaDialogTitle\"></strong>"
+        + "    </div>"
+        + "    <div class=\"nbaDialogBd\" id=\"dialog_msg2\">弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内</div>"
+        + "    <div class=\"nbaDialogHd\">"
+        + "        <strong class=\"nbaDialogTitle\"></strong>"
+        + "    </div>"
+        + "    <div class=\"nbaDialogFt\">"
+        + "        <a href=\"javascript:;\" class=\"nbaDialogBtn nbaDialogBtnPrimary\" id=\"dialog_ok2\">确定</a>"
+        + "    </div></div></div>";
+    document.body.appendChild(div);
+
+    var dialogs2 = document.getElementById("dialogs2");
+    dialogs2.style.display = 'block';
+
+    var dialog_msg2 = document.getElementById("dialog_msg2");
+    dialog_msg2.innerHTML = msg;
+
+    var dialog_ok2 = document.getElementById("dialog_ok2");
+    dialog_ok2.onclick = function () {
+        // dialogs2.style.display = 'none';
+        // callback();
+        window.location.reload();
+    };
 };
 

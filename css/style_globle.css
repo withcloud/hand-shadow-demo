@@ -328,3 +328,15 @@ body {
    top: 120px;
    width: 400px;
 }
+
+.game-canvas-delete{
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  top: 55px;
+  right: 15px;
+  z-index: 1;
+  background-color: #319CFF;
+  border-radius: 50%;
+  cursor: pointer;
+}
