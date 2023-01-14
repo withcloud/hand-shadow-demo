@@ -1,5 +1,5 @@
 // 網絡地址
-const HOST = "https://msc-data-science-server.vercel.app"; //指定服務端口
+const HOST = "https://pincode-beta.vercel.app"; //指定服務端口
 let pinInput = ""; // pin碼值
 let local_user = {};// pin對象
 const scoresData = [];
