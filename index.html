@@ -167,21 +167,27 @@
   </div>
 
   <!-- 手影比對 -->
-  <div id='hand_shodow' class='hand_shodow' style='display: block;'>
+  <div id='hand_shodow' class='hand_shodow' style='display: none;'>
     <div style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
 
       <!-- 溫馨提示 -->
       <div
         class="absolute left-4 top-4 flex-col items-start font-medium text-[17px] max-w-[380px] text-white hidden xl:flex">
         <span class="font-bold text-[24px] ">溫馨提示</span>
-        <span class="font-bold text-[24px] ">1. 請讓攝像頭保持對著「白色背景」,攝像內容僅有手部時，識別率會更高；</span>
-        <span class="font-bold text-[24px] ">2. 手影名稱旁的「小數」代表相似度，合理調整手部動作，分別作出畫面中的手影動作吧。</span>
+        <span class="">1. demo目前只識別畫面上的六種手影；</span>
+        <span class="">2. 請讓攝像頭保持對著「白色背景」,且攝像內容僅有手部時，識別率會更高；</span>
+        <span class="">3. 手影名稱旁的「小數」代表相似度，「小數」越高代表相似度越高，合理調整手部動作，分別作出畫面中的手影動作吧。</span>
+        <span class="font-bold text-[24px] ">遊戲玩法介紹</span>
+        <span class="">1. 用戶選擇畫面上的目標手影圖片進行手部動作模仿；</span>
+        <span class="">2. 將手暴露在攝像頭畫面上，盡量避免身體其他部位不出現在畫面裡；</span>
+        <span class="">3. 觀察目標手影的相似度，微調手部動作，以提高相似值。</span>
       </div>
 
       <div class="title">手影比對</div>
       <div class="mx-auto flex flex-col items-center justify-center text-white max-w-[380px] xl:hidden">
-        <span class="font-bold text-[17px] text-center">1. 請讓攝像頭保持對著「白色背景」,攝像內容僅有手部時，識別率會更高；</span>
-        <span class="font-bold text-[17px] text-center">2. 手影名稱旁的「小數」代表相似度，合理調整手部動作，分別作出畫面中的手影動作吧。</span>
+        <span class="font-bold text-[16px]">1. 用戶選擇畫面上的目標手影圖片進行手部動作模仿；</span>
+        <span class="font-bold text-[16px]">2. 將手暴露在攝像頭畫面上，盡量避免身體其他部位不出現在畫面裡；</span>
+        <span class="font-bold text-[16px]">3. 觀察目標手影的相似度，微調手部動作，以提高相似值。</span>
       </div>
 
       <canvas></canvas>
