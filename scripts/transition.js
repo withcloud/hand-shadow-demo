@@ -460,6 +460,8 @@ const userStart = async () => {//pin開始事件
 };
 
 const newStart = async () => {// pin新身份開始  建立用戶
+    var startDirectlyBtn=document.getElementById('startDirectlyBtn')
+    startDirectlyBtn.innerText="正在創建新用戶..."
     try {
         const user = await fetch(`${HOST}/api/user/create`, {
             method: "POST",
