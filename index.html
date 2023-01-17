@@ -173,22 +173,22 @@
       <div class="title">手影比對</div>
 
       <!-- 溫馨提示 -->
-      <div
-        class="absolute left-4 top-4 border-2 text-white rounded-md p-2 flex-col items-start font-medium text-[17px] hidden xl:flex">
-        <span class="font-bold text-[24px] max-w-[500px]">
-          玩法: 觀察手影圖片，在攝像頭前用雙手模仿，慢慢微調手部動作，以提高相似值。
+      <div class="absolute left-4 top-4 text-white space-y-4 flex-col items-start font-medium hidden xl:flex">
+        <span class="font-bold text-[24px] max-w-[500px] rounded-md border-2 p-2">
+          *請允許瀏覽器使用攝像頭。
         </span>
-        <span class="font-bold text-[24px]"></span>
+        <span class="font-bold text-[24px] max-w-[500px] rounded-md border-2 p-2">
+          *請讓攝像頭保持對著「白色或黑色背景」,以利提高識別率。
+        </span>
       </div>
 
 
       <div class="flex justify-center items-center space-x-32">
 
-        <div class="w-[320px] h-auto flex flex-col items-center text-white text-[24px] space-y-8">
+        <div class="w-[320px] mb-6 h-auto flex flex-col items-center self-end text-white text-[24px] space-y-8">
           <canvas class="w-[300px] h-[300px] bg-white"></canvas>
           <div class="border-2 rounded-md p-2">
-            <span class="self-start">*請允許瀏覽器使用攝像頭。</span>
-            <span>*請讓攝像頭保持對著「白色或黑色背景」,以利提高識別率。</span>
+            <span>玩法: 觀察手影圖片，在攝像頭前用雙手模仿，慢慢微調手部動作，以提高相似值。</span>
           </div>
         </div>
         <div id="example_photo" class="example_photo grid grid-cols-3 space-x-8 space-y-8 text-white place-items-end	">
