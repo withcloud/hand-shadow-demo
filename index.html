@@ -178,7 +178,7 @@
           *請允許瀏覽器使用攝像頭。
         </span>
         <span class="font-bold text-[24px] max-w-[500px] rounded-md border-2 p-2">
-          *請讓攝像頭保持對著「白色或黑色背景」,以利提高識別率。
+          *請讓攝像頭保持對著「白色背景」,以利提高識別率。
         </span>
       </div>
 
@@ -188,33 +188,39 @@
         <div class="w-[320px] mb-6 h-auto flex flex-col items-center self-end text-white text-[24px] space-y-8">
           <canvas class="w-[300px] h-[300px] bg-white"></canvas>
           <div class="border-2 rounded-md p-2">
-            <span>玩法: 觀察手影圖片，在攝像頭前用雙手模仿，慢慢微調手部動作，以提高相似值。</span>
+            <span>玩法: 觀察手影圖片，在攝像頭前用雙手模仿，慢慢微調手部動作，以提高相似度。</span>
           </div>
         </div>
         <div id="example_photo" class="example_photo grid grid-cols-3 space-x-8 space-y-8 text-white place-items-end	">
           <div id="BigCrad" class="ml-8 mt-8">
             <img src="./assets/image/handShow/BigCrad.png" class="" alt="">
-            <p>BigCrad（0）</p>
+            <div class="text-center">BigCrad</div>
+            <p id="BigCrad-percentage">相似度：0%</p>
           </div>
           <div id="Goat">
             <img src="./assets/image/handShow/Goat.png" class="" alt="">
-            <p>Goat（0）</p>
+            <div class="text-center">Goat</div>
+            <p id="Goat-percentage">相似度：0%</p>
           </div>
           <div id="RedBird">
             <img src="./assets/image/handShow/RedBird.png" class="" alt="">
-            <p>RedBird（0）</p>
+            <div class="text-center">RedBird</div>
+            <p id="RedBird-percentage">相似度：0%</p>
           </div>
           <div id="Trukey">
             <img src="./assets/image/handShow/Trukey.png" class="" alt="">
-            <p>Trukey（0）</p>
+            <div class="text-center">Trukey</div>
+            <p id="Trukey-percentage">相似度：0%</p>
           </div>
           <div id="Owl">
             <img src="./assets/image/handShow/Owl.png" class="" alt="">
-            <p>Owl（0）</p>
+            <div class="text-center">Owl</div>
+            <p id="Owl-percentage">相似度：0%</p>
           </div>
           <div id="Kitten">
             <img src="./assets/image/handShow/Kitten.png" class="" alt="">
-            <p>Kitten（0）</p>
+            <div class="text-center">Kitten</div>
+            <p id="Kitten-percentage">相似度：0%</p>
           </div>
         </div>
       </div>
