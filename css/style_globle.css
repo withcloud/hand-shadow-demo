@@ -26,7 +26,7 @@ body {
     transform 0.5s cubic-bezier(0.09, 0.385, 0, 0.975);
 }
 .rectangle.info {
-  background: #4D4F80;
+  background: #4d4f80;
   left: 20px;
   top: 22px;
 }
@@ -94,11 +94,11 @@ body {
 .mainButton.web:active {
   transform: translate(-50%, -50%) scale(1.1, 1.1);
 }
-.mainButton.start:active{
+.mainButton.start:active {
   transform: scale(1.1, 1.1);
 }
 
-.introduction{
+.introduction {
   display: none;
 }
 
@@ -126,11 +126,11 @@ body {
   font-size: 40px;
 }
 
-#main_button{
+#main_button {
   width: 892px;
 
   position: absolute;
-  top:90%;
+  top: 90%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
@@ -141,58 +141,45 @@ body {
   justify-content: center;
 }
 
-
-.main_button>button{
+.main_button > button {
   background: #00c0a3;
   color: rgb(255, 255, 255);
   font-size: 20px;
   border-radius: 101px;
-  border:none;
-  width:200px;
+  border: none;
+  width: 200px;
   cursor: pointer;
   height: 50px;
   line-height: 50px;
 }
 
-
-.pin_input{
-  width:600px;
-  height:50px;
+.pin_input {
+  width: 600px;
+  height: 50px;
   line-height: 50px;
   font-size: 40px;
   padding-left: 10px;
   outline: none;
 }
 
-.title{
-  font-size: 69px;
+.title {
+  font-size: 72px;
   color: rgb(255, 255, 255);
   text-align: center;
 }
 
-.example_photo{
-  display: grid;
-  /* 容納單元格 */
-  grid-template-columns: repeat(6, 1fr);
-  /* 行與行之間，列與列之間 */
-  /* grid-gap: 20px 20px; */
-  /* 內容整體平均分佈 */
-  justify-content: space-around;
-  color: rgb(255, 255, 255);
-  margin-top:80px;
-}
-.example_photo img{
-  width: 150px;
-  height: 150px;
+.example_photo img {
+  width: 250px;
+  height: 250px;
 }
 
-.example_photo>div{
+.example_photo > div {
   text-align: center;
   justify-self: center;
   align-self: center;
 }
 
-.endP{
+.endP {
   color: rgb(255, 255, 255);
   font-size: 69px;
   text-align: center;
@@ -213,7 +200,7 @@ body {
 }
 
 .endButton.web {
-  width:400px;
+  width: 400px;
   height: 120px;
   background: #00c0a3;
   position: absolute;
@@ -283,21 +270,12 @@ body {
   text-decoration: underline;
 }
 
-#hand_shodow canvas {
-  position: relative;
-  left: 50%;
-  top: 20%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  width: 300px;
-  height: 300px;
-}
-
-.active{
+.active {
   box-shadow: 0px 0px 8px red;
+  border: 8px solid red;
 }
 
-.qrcode_photo{
+.qrcode_photo {
   text-align: center;
   margin-top: 30px;
   display: flex;
@@ -305,38 +283,38 @@ body {
 }
 
 .qrcode_photo video,
-.qrcode_photo img{
+.qrcode_photo img {
   width: 300px;
-  height:300px;
+  height: 300px;
   background-color: #fff;
   margin: 0 5px;
   padding: 0px;
   /* 被替换的内容正好填充元素的内容框 */
   object-fit: cover;
 }
-  
-.qrcode_p{
-  color:  #fff;
+
+.qrcode_p {
+  color: #fff;
   font-size: 30px;
   margin: 10px;
   text-align: center;
 }
 
-#eChartsMain>canvas{
-   position: relative;
-   left: 200px;
-   top: 120px;
-   width: 400px;
+#eChartsMain > canvas {
+  position: relative;
+  left: 200px;
+  top: 120px;
+  width: 400px;
 }
 
-.game-canvas-delete{
+.game-canvas-delete {
   position: absolute;
   width: 70px;
   height: 70px;
   top: 55px;
   right: 15px;
   z-index: 1;
-  background-color: #319CFF;
+  background-color: #319cff;
   border-radius: 50%;
   cursor: pointer;
 }
