@@ -102,10 +102,14 @@ async function sight() {
 
     // 進入手影比對頁面
     window.handShodowNextNum = 60;
-    $("#hand_shodow_next").text(`下一頁（${window.handShodowNextNum}）`);
+    $("#hand_shodow_button_nextPage").text(
+      `下一頁（${window.handShodowNextNum}）`
+    );
     window.handShodowNextTimer = setInterval(() => {
       window.handShodowNextNum -= 1;
-      $("#hand_shodow_next").text(`下一頁（${window.handShodowNextNum}）`);
+      $("#hand_shodow_button_nextPage").text(
+        `下一頁（${window.handShodowNextNum}）`
+      );
       if (window.handShodowNextNum <= 0) {
         hand_shodow_next(); //進入拍照頁面
       }
