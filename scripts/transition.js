@@ -46,10 +46,10 @@ function language_game(number) {
 
   // 語言頁面倒計時
   window.languageCarNum = 60;
-  $(".introduction_start").text(`開始（${window.languageCarNum}）`);
+  $("#introduction_start").text(`開始（${window.languageCarNum}）`);
   window.languageCarTimer = setInterval(() => {
     window.languageCarNum -= 1;
-    $(".introduction_start").text(`開始（${window.languageCarNum}）`);
+    $("#introduction_start").text(`開始（${window.languageCarNum}）`);
     if (window.languageCarNum <= 0) {
       again();
     }
