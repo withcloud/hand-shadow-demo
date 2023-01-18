@@ -17,18 +17,6 @@ const items = [
 // 重新開始遊戲
 function again() {
   window.location.reload(); //重新加載會有閃爍現象
-
-  // $("#main").css('display', 'block');
-  // $("#end_card").css('display', 'none');
-  // clearInterval(window.endCarTimer) //清除結束頁面倒計時
-  // $("#pin_code").css('display', 'none');
-  // $("#introduction_chinese").css('display', 'none');
-  // $("#introduction_english").css('display', 'none');
-  // $("#introduction_portuguese").css('display', 'none');
-  // clearInterval(window.languageCarTimer) //清除語言頁面倒計時
-  // $("#hand_shodow").css('display', 'none');
-  // $("#qrcode").css('display', 'none');
-  // $("#qr_code_page").css('display', 'none');
 }
 
 // 選擇語言
@@ -36,6 +24,8 @@ function language_game(number) {
   chinese = document.getElementById("introduction_chinese");
   english = document.getElementById("introduction_english");
   portuguese = document.getElementById("introduction_portuguese");
+  main = document.getElementById("main");
+  main.style.display = "none";
   switch (parseInt(number)) {
     case 1:
       chinese.style.display = "block";
@@ -68,12 +58,16 @@ function language_game(number) {
 
 function language_start() {
   pin_code = document.getElementById("pin_code");
+  introduction_chinese = document.getElementById("introduction_chinese");
+  introduction_chinese.style.display = "none";
   pin_code.style.display = "block";
   clearInterval(window.languageCarTimer); //清除語言頁面倒計時
 }
 
 function pin_code_start() {
+  pin_code = document.getElementById("pin_code");
   hand_shodow = document.getElementById("hand_shodow");
+  pin_code.style.display = "none";
   hand_shodow.style.display = "block";
 
   sight(); //開啟攝像頭進行手影比對
@@ -108,10 +102,10 @@ async function sight() {
 
     // 進入手影比對頁面
     window.handShodowNextNum = 60;
-    $(".hand_shodow_next").text(`下一頁（${window.handShodowNextNum}）`);
+    $("#hand_shodow_next").text(`下一頁（${window.handShodowNextNum}）`);
     window.handShodowNextTimer = setInterval(() => {
       window.handShodowNextNum -= 1;
-      $(".hand_shodow_next").text(`下一頁（${window.handShodowNextNum}）`);
+      $("#hand_shodow_next").text(`下一頁（${window.handShodowNextNum}）`);
       if (window.handShodowNextNum <= 0) {
         hand_shodow_next(); //進入拍照頁面
       }
@@ -208,6 +202,8 @@ function intercept() {
 
 // 進入到結束頁面
 function qrcode_next() {
+  hand_shodow = document.getElementById("hand_shodow");
+  hand_shodow.style.display = "none";
   end_card = document.getElementById("end_card");
   end_card.style.display = "block";
 
