@@ -88,7 +88,7 @@ async function sight() {
 
   maxPredictions = model.getTotalClasses(); // 所有模型類
 
-  webcam = new tmImage.Webcam(300, 300, false); // canvas width , canvas height, canvas 是否翻轉網絡攝像頭
+  webcam = new tmImage.Webcam(300, 300, true); // canvas width , canvas height, canvas 是否翻轉網絡攝像頭
 
   try {
     await webcam.setup(); // 請求訪問網絡攝像頭
@@ -130,41 +130,23 @@ async function loop() {
 async function predict() {
   if (state) {
     const prediction = await model.predict(webcam.canvas); //實時類的概率
+
     for (let i = 0; i < maxPredictions; i++) {
-      // 猜測的結果
-      const classPrediction =
-        "相似度：" + prediction[i].probability.toFixed(1) * 100 + "%";
-
-      // 顯示 Reindeer Dog Eagle 實時猜測值
-      // if (classPrediction.includes("Reindeer")) {
-      //     $("#hand_shodow p")[i].innerHTML = classPrediction
-      // } else if (classPrediction.includes("Dog")) {
-      //     $("#hand_shodow p")[i].innerHTML = classPrediction
-      // } else if (classPrediction.includes("Eagle")) {
-      //     $("#hand_shodow p")[i].innerHTML = classPrediction
-      // }
-      // BigCrad Goat Kitten Owl RedBird Trukey
-      if (prediction[i].className.includes("BigCrad")) {
-        $("#BigCrad-percentage").text(classPrediction);
-      } else if (prediction[i].className.includes("Goat")) {
-        $("#Goat-percentage").text(classPrediction);
-      } else if (prediction[i].className.includes("Kitten")) {
-        $("#Kitten-percentage").text(classPrediction);
-      } else if (prediction[i].className.includes("Owl")) {
-        $("#Owl-percentage").text(classPrediction);
-      } else if (prediction[i].className.includes("RedBird")) {
-        $("#RedBird-percentage").text(classPrediction);
-      } else if (prediction[i].className.includes("Trukey")) {
-        $("#Trukey-percentage").text(classPrediction);
-      }
-
-      // 概率大於0.85的手影圖片，突出邊框
+      // 概率大於0.7的手影圖片，突出邊框
       if (prediction[i].probability.toFixed(2) > 0.7) {
         hand_shadow_name = prediction[i].className; //記錄猜測的手影名稱
-        $("#hand_shodow img")[i].setAttribute("class", "active");
-      } else {
-        $("#hand_shodow img")[i].setAttribute("class", "");
+        $(`#${hand_shadow_name}-img`).addClass("active");
       }
+      for (let j = 0; j < maxPredictions; j++) {
+        if (prediction[i].className !== hand_shadow_name) {
+          $(`#${prediction[i].className}-img`).removeClass("active");
+        }
+      }
+
+      // BigCrad Goat Kitten Owl RedBird Trukey
+      $(`#${prediction[i].className}-percentage`).text(
+        "相似度：" + prediction[i].probability.toFixed(1) * 100 + "%"
+      );
     }
   }
 }
